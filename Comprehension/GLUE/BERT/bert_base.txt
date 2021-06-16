@@ -1,0 +1,59 @@
+python jiant/proj/simple/runscript.py \
+    run \
+    --run_name bert_mrpc \
+    --exp_dir ../gluedataset/ \
+    --data_dir ../gluedataset/tasks \
+    --hf_pretrained_model_name_or_path ../pretrained_model/bert \
+    --tasks mrpc \
+    --train_batch_size 64 \
+    --num_train_epochs 5 \
+    --seed=2021 \
+    --do_save \
+    --write_test_preds
+    
+    
+python jiant/proj/simple/runscript.py \
+    run \
+    --run_name bert_stsb \
+    --exp_dir ../gluedataset/ \
+    --data_dir ../gluedataset/tasks \
+    --hf_pretrained_model_name_or_path ../pretrained_model/bert \
+    --tasks stsb \
+    --train_batch_size 64 \
+    --num_train_epochs 5 \
+    --seed=2021 \
+    --do_save \
+    --write_test_preds
+    
+    
+python jiant/proj/simple/runscript.py \
+    run \
+    --run_name bert_qqp \
+    --exp_dir ../gluedataset/ \
+    --data_dir ../gluedataset/tasks \
+    --hf_pretrained_model_name_or_path ../pretrained_model/bert \
+    --tasks qqp \
+    --train_batch_size 64 \
+    --num_train_epochs 5 \
+    --seed=2021 \
+    --do_save \
+    --write_test_preds
+    
+python jiant/proj/simple/runscript.py \
+    run \
+    --run_name bert_wnli \
+    --exp_dir ../gluedataset/ \
+    --data_dir ../gluedataset/tasks \
+    --hf_pretrained_model_name_or_path ../pretrained_model/bert \
+    --tasks wnli \
+    --train_batch_size 64 \
+    --num_train_epochs 5 \
+    --seed=2021 \
+    --do_save \
+    --write_test_preds
+    
+python ./jiant/scripts/benchmarks/benchmark_submission_formatter.py \
+    --benchmark GLUE \
+    --tasks stsb mrpc qqp wnli\
+    --input_base_path ../test_preds/bert/ \
+    --output_path ../result/bert/

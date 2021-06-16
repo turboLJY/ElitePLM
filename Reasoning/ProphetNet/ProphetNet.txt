@@ -1,0 +1,212 @@
+#ProphetNet
+#training
+#Commensense QA
+python run_coqa-prophetnet.py \
+--model_name_or_path microsoft/prophetnet-large-uncased \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 5 \
+--output_dir coqa_prophetnet_output \
+--per_gpu_eval_batch_size=8 \
+--per_device_train_batch_size=8 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  data/coqa/train_rand_split.json \
+--validation_file data/coqa/dev_rand_split.json \
+--cache_dir prophetnet \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10 \
+--pad_to_max_length True \
+--max_seq_length 128
+
+#ROCStories
+python run_roc-prophetnet.py \
+--model_name_or_path microsoft/prophetnet-large-uncased \
+--do_train \
+--do_eval \
+--learning_rate 2e-4 \
+--num_train_epochs 2 \
+--output_dir  roc_prophetnet_output \
+--per_gpu_eval_batch_size=8 \
+--per_device_train_batch_size=8 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  data/roc-val/train.csv \
+--validation_file  data/roc-val/valid.csv \
+--cache_dir  prophetnet \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10 \
+--pad_to_max_length True \
+--max_seq_length 128 
+
+
+#SWAG
+python run_swag-prophetnet.py \
+--model_name_or_path microsoft/prophetnet-large-uncased \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 2 \
+--output_dir  swag_prophetnet_output \
+--per_gpu_eval_batch_size=8 \
+--per_device_train_batch_size=8 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  data/swag/train.csv \
+--validation_file  data/swag/val.csv \
+--cache_dir  prophetnet \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10 \
+--pad_to_max_length True \
+--max_seq_length 128 
+
+
+#HellaSWAG
+python run_hellaswag-prophetnet.py \
+--model_name_or_path microsoft/prophetnet-large-uncased \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 3 \
+--output_dir  hella_prophetnet_output \
+--per_gpu_eval_batch_size=8 \
+--per_device_train_batch_size=8 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  data/hellaswag/hellaswag_train.json \
+--validation_file  data/hellaswag/hellaswag_val.json \
+--cache_dir  prophetnet \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10 \
+--max_seq_length 128 \
+--pad_to_max_length True
+
+#ARCT
+python run_arct-prophetnet.py \
+--model_name_or_path microsoft/prophetnet-large-uncased \
+--do_train \
+--do_eval \
+--do_preict \
+--learning_rate 2e-5 \
+--num_train_epochs 5 \
+--output_dir  tt-arct_prophetnet_output \
+--per_gpu_eval_batch_size=8 \
+--per_device_train_batch_size=8 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  data/arct/train.csv \
+--validation_file  data/arct/valid.csv \
+--test_file  data/arct/test.csv \
+--cache_dir  prophetnet \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10 \
+--max_seq_length 128 \
+--pad_to_max_length True
+
+#Sen1
+python run_sen1-prophetnet.py \
+--model_name_or_path microsoft/prophetnet-large-uncased \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 5  \
+--output_dir  sen1_prophetnet_output \
+--per_gpu_eval_batch_size=8 \
+--per_device_train_batch_size=8 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  data/sen/train.csv \
+--validation_file  data/sen/valid.csv \
+--test_file  data/sen/test.csv \
+--cache_dir  prophetnet \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10 \
+--max_seq_length 128 \
+--pad_to_max_length True
+
+#Sen2
+python run_sen2-prophetnet.py \
+--model_name_or_path microsoft/prophetnet-large-uncased \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 5 \
+--output_dir  sen2_prophetnet_output \
+--per_gpu_eval_batch_size=8 \
+--per_device_train_batch_size=8 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  data/sen/train.csv \
+--validation_file  data/sen/valid.csv \
+--test_file  data/sen/test.csv \
+--cache_dir  prophetnet \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10 \
+--max_seq_length 128 \
+--pad_to_max_length True
+
+#predicting
+
+#Commensense QA
+python run_arct-prophetnet.py \
+--model_name_or_path  arct_prophetnet_output \
+--do_predict \
+--per_gpu_eval_batch_size=8 \
+-- test_file  data/coqa/ test_rand_split_no_answers.json \
+--max_target_length 128 \
+--pad_to_max_length True
+
+#ROCStories
+python run_roc-prophetnet.py \
+--model_name_or_path  roc_prophetnet_output \
+--do_predict \
+--per_gpu_eval_batch_size=8 \
+--test_file  data/roc-val/test.csv
+
+#SWAG
+python run_swag-prophetnet.py \
+--model_name_or_path  swag_prophetnet_output \
+--do_predict \
+--per_gpu_eval_batch_size=8 \
+--test_file  data/swag/test.csv
+
+#HellaSWAG
+python run_swag-prophetnet.py \
+--model_name_or_path  hella_prophetnet_output \
+--do_predict \
+--per_gpu_eval_batch_size=8 \
+--test_file  data/hellaswag/ hellaswag_test.json
+
+
+#ARCT
+python run_arct-prophetnet.py \
+--model_name_or_path  arct_prophetnet_output \
+--do_eval \
+--per_gpu_eval_batch_size=8 \
+-- validation_file  data/arct/test.csv \
+--max_target_length 128 \
+--pad_to_max_length True
+
+#Sen1
+python run_sen1-prophetnet.py \
+--model_name_or_path  sen1_prophetnet_output \
+--do_eval \
+--per_gpu_eval_batch_size=8 \
+--validation_file  data/sen/test.csv \
+--pad_to_max_length True
+
+#Sen2
+python run_sen2-prophetnet.py \
+--model_name_or_path  sen2_prophetnet_output \
+--do_eval \
+--per_gpu_eval_batch_size=8 \
+--validation_file  data/sen/test.csv \
+--pad_to_max_length True

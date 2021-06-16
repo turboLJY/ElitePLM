@@ -1,0 +1,116 @@
+CUDA_VISIBLE_DEVICES=1 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/xlnet_base \
+  --task_name mrpc \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/xlnet_base/mrpc
+
+CUDA_VISIBLE_DEVICES=0 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/xlnet_base \
+  --task_name wnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/xlnet_base/wnli
+
+CUDA_VISIBLE_DEVICES=3 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/xlnet_base \
+  --task_name mnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 128 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/xlnet_base/mnli
+
+CUDA_VISIBLE_DEVICES=5 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/xlnet_base \
+  --task_name cola \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/xlnet_base/cola
+
+CUDA_VISIBLE_DEVICES=0 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/xlnet_base \
+  --task_name sst2 \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/xlnet_base/sst2
+
+CUDA_VISIBLE_DEVICES=2 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/xlnet_base \
+  --task_name rte \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/xlnet_base/rte
+
+CUDA_VISIBLE_DEVICES=0 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/xlnet_base \
+  --task_name stsb \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/xlnet_base/stsb
+
+CUDA_VISIBLE_DEVICES=3 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/xlnet_base \
+  --task_name qqp \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 128 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/xlnet_base/qqp
+
+CUDA_VISIBLE_DEVICES=0 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/xlnet_base \
+  --task_name qnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/xlnet_base/qnli

@@ -1,0 +1,78 @@
+CUDA_VISIBLE_DEVICES=0 python run_glue.py \
+  --task_name stsb \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 8 \
+  --per_device_eval_batch_size 128 \
+  --learning_rate 1e-5 \
+  --adam_beta1 0.9 \
+  --adam_beta2 0.98 \
+  --num_train_epochs 10 \
+  --output_dir ../results/ernie-thu/stsb/ \
+  --warmup_ratio 0.0 \
+  --seed 2021 \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+  --logging_steps 20 \
+  --do_train \
+  --do_eval
+
+
+CUDA_VISIBLE_DEVICES=0 python run_glue.py \
+  --task_name qqp \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --per_device_eval_batch_size 128 \
+  --learning_rate 1e-5 \
+  --adam_beta1 0.9 \
+  --adam_beta2 0.98 \
+  --num_train_epochs 3 \
+  --output_dir ../results/ernie-thu/stsb/ \
+  --warmup_ratio 0.0 \
+  --seed 2021 \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+  --logging_steps 20 \
+  --do_train \
+  --do_eval
+
+
+CUDA_VISIBLE_DEVICES=0 python run_glue.py \
+  --task_name mrpc \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 16 \
+  --per_device_eval_batch_size 128 \
+  --learning_rate 1e-5 \
+  --adam_beta1 0.9 \
+  --adam_beta2 0.98 \
+  --num_train_epochs 10 \
+  --output_dir ../results/ernie-thu/stsb/ \
+  --warmup_ratio 0.0 \
+  --seed 2021 \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+  --logging_steps 20 \
+  --do_train \
+  --do_eval
+
+
+CUDA_VISIBLE_DEVICES=0 python run_glue.py \
+  --task_name wnli \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 8 \
+  --per_device_eval_batch_size 128 \
+  --learning_rate 1e-5 \
+  --adam_beta1 0.9 \
+  --adam_beta2 0.98 \
+  --num_train_epochs 10 \
+  --output_dir ../results/ernie-thu/stsb/ \
+  --warmup_ratio 0.0 \
+  --seed 2021 \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+  --logging_steps 20 \
+  --do_train \
+  --do_eval

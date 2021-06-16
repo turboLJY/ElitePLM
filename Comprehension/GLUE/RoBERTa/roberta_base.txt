@@ -1,0 +1,172 @@
+CUDA_VISIBLE_DEVICES=5 fairseq-train ../../fairseq-master/QQP-bin/ \
+    --restore-file ./roberta.base/model.pt \
+    --max-positions 512 \
+    --batch-size 32 \
+    --max-tokens 4400 \
+    --task sentence_prediction \
+    --reset-optimizer --reset-dataloader --reset-meters \
+    --required-batch-size-multiple 1 \
+    --init-token 0 --separator-token 2 \
+    --arch roberta_base \
+    --criterion sentence_prediction \
+    --num-classes 2 \
+    --dropout 0.1 --attention-dropout 0.1 \
+    --weight-decay 0.01 --optimizer adam --adam-betas "(0.9, 0.98)" --adam-eps 1e-06 \
+    --clip-norm 0.0 \
+    --lr-scheduler polynomial_decay --lr 1e-5 --total-num-update 113272 --warmup-updates 28318 \
+    --fp16 --fp16-init-scale 4 --threshold-loss-scale 1 --fp16-scale-window 128 \
+    --max-epoch 10 \
+    --find-unused-parameters \
+    --best-checkpoint-metric accuracy --maximize-best-checkpoint-metric
+
+CUDA_VISIBLE_DEVICES=0 fairseq-train ../../fairseq-master/RTE-bin/ \
+    --restore-file ./roberta.base/model.pt \
+    --max-positions 512 \
+    --batch-size 16 \
+    --max-tokens 4400 \
+    --task sentence_prediction \
+    --reset-optimizer --reset-dataloader --reset-meters \
+    --required-batch-size-multiple 1 \
+    --init-token 0 --separator-token 2 \
+    --arch roberta_base \
+    --criterion sentence_prediction \
+    --num-classes 2 \
+    --dropout 0.1 --attention-dropout 0.1 \
+    --weight-decay 0.01 --optimizer adam --adam-betas "(0.9, 0.98)" --adam-eps 1e-06 \
+    --clip-norm 0.0 \
+    --lr-scheduler polynomial_decay --lr 2e-5 --total-num-update 2036 --warmup-updates 122 \
+    --fp16 --fp16-init-scale 4 --threshold-loss-scale 1 --fp16-scale-window 128 \
+    --max-epoch 10 \
+    --find-unused-parameters \
+    --best-checkpoint-metric accuracy --maximize-best-checkpoint-metric
+
+CUDA_VISIBLE_DEVICES=3 fairseq-train ../fairseq-master-roberta/CoLA-bin/ \
+    --restore-file ./roberta.base/model.pt \
+    --max-positions 512 \
+    --batch-size 16 \
+    --max-tokens 4400 \
+    --task sentence_prediction \
+    --reset-optimizer --reset-dataloader --reset-meters \
+    --required-batch-size-multiple 1 \
+    --init-token 0 --separator-token 2 \
+    --arch roberta_base \
+    --criterion sentence_prediction \
+    --num-classes 2 \
+    --dropout 0.1 --attention-dropout 0.1 \
+    --weight-decay 0.01 --optimizer adam --adam-betas "(0.9, 0.98)" --adam-eps 1e-06 \
+    --clip-norm 0.0 \
+    --lr-scheduler polynomial_decay --lr 1e-5 --total-num-update 5336 --warmup-updates 320 \
+    --fp16 --fp16-init-scale 4 --threshold-loss-scale 1 --fp16-scale-window 128 \
+    --max-epoch 10 \
+    --find-unused-parameters \
+    --best-checkpoint-metric accuracy --maximize-best-checkpoint-metric
+
+CUDA_VISIBLE_DEVICES=7 fairseq-train ../../fairseq-master/QNLI-bin/ \
+    --restore-file ./roberta.base/model.pt \
+    --max-positions 512 \
+    --batch-size 32 \
+    --max-tokens 4400 \
+    --task sentence_prediction \
+    --reset-optimizer --reset-dataloader --reset-meters \
+    --required-batch-size-multiple 1 \
+    --init-token 0 --separator-token 2 \
+    --arch roberta_base \
+    --criterion sentence_prediction \
+    --num-classes 2 \
+    --dropout 0.1 --attention-dropout 0.1 \
+    --weight-decay 0.01 --optimizer adam --adam-betas "(0.9, 0.98)" --adam-eps 1e-06 \
+    --clip-norm 0.0 \
+    --lr-scheduler polynomial_decay --lr 1e-5 --total-num-update 33112 --warmup-updates 1986 \
+    --fp16 --fp16-init-scale 4 --threshold-loss-scale 1 --fp16-scale-window 128 \
+    --max-epoch 10 \
+    --find-unused-parameters \
+    --best-checkpoint-metric accuracy --maximize-best-checkpoint-metric
+
+CUDA_VISIBLE_DEVICES=3 fairseq-train ../fairseq-master-roberta/MRPC-bin/ \
+    --restore-file ./roberta.base/model.pt \
+    --max-positions 512 \
+    --batch-size 16 \
+    --max-tokens 4400 \
+    --task sentence_prediction \
+    --reset-optimizer --reset-dataloader --reset-meters \
+    --required-batch-size-multiple 1 \
+    --init-token 0 --separator-token 2 \
+    --arch roberta_base \
+    --criterion sentence_prediction \
+    --num-classes 2 \
+    --dropout 0.1 --attention-dropout 0.1 \
+    --weight-decay 0.01 --optimizer adam --adam-betas "(0.9, 0.98)" --adam-eps 1e-06 \
+    --clip-norm 0.0 \
+    --lr-scheduler polynomial_decay --lr 1e-5 --total-num-update 2296 --warmup-updates 137 \
+    --fp16 --fp16-init-scale 4 --threshold-loss-scale 1 --fp16-scale-window 128 \
+    --max-epoch 10 \
+    --find-unused-parameters \
+    --best-checkpoint-metric accuracy --maximize-best-checkpoint-metric
+
+CUDA_VISIBLE_DEVICES=0 fairseq-train ../fairseq-master/STS-B-bin/ \
+    --restore-file ./roberta.base/model.pt \
+    --max-positions 512 \
+    --batch-size 16 \
+    --max-tokens 4400 \
+    --task sentence_prediction \
+    --reset-optimizer --reset-dataloader --reset-meters \
+    --required-batch-size-multiple 1 \
+    --init-token 0 --separator-token 2 \
+    --arch roberta_base \
+    --criterion sentence_prediction \
+    --num-classes 1 \
+    --dropout 0.1 --attention-dropout 0.1 \
+    --weight-decay 0.01 --optimizer adam --adam-betas "(0.9, 0.98)" --adam-eps 1e-06 \
+    --clip-norm 0.0 \
+    --lr-scheduler polynomial_decay --lr 2e-5 --total-num-update 3598 --warmup-updates 214 \
+    --fp16 --fp16-init-scale 4 --threshold-loss-scale 1 --fp16-scale-window 128 \
+    --max-epoch 10 \
+    --find-unused-parameters \
+    --best-checkpoint-metric accuracy --regression-target --best-checkpoint-metric loss
+
+CUDA_VISIBLE_DEVICES=7 fairseq-train ../../fairseq-master/MNLI-bin/ \
+    --restore-file ./roberta.base/model.pt \
+    --max-positions 512 \
+    --batch-size 32 \
+    --max-tokens 4400 \
+    --task sentence_prediction \
+    --reset-optimizer --reset-dataloader --reset-meters \
+    --required-batch-size-multiple 1 \
+    --init-token 0 --separator-token 2 \
+    --arch roberta_base \
+    --criterion sentence_prediction \
+    --num-classes 3 \
+    --dropout 0.1 --attention-dropout 0.1 \
+    --weight-decay 0.01 --optimizer adam --adam-betas "(0.9, 0.98)" --adam-eps 1e-06 \
+    --clip-norm 0.0 \
+    --lr-scheduler polynomial_decay --lr 1e-5 --total-num-update 123873 --warmup-updates 7432 \
+    --fp16 --fp16-init-scale 4 --threshold-loss-scale 1 --fp16-scale-window 128 \
+    --max-epoch 10 \
+    --find-unused-parameters \
+    --best-checkpoint-metric accuracy --maximize-best-checkpoint-metric
+
+CUDA_VISIBLE_DEVICES=5 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/roberta_base \
+  --task_name sst2 \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 64 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/roberta_base/sst2
+
+CUDA_VISIBLE_DEVICES=5 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/roberta_base \
+  --task_name wnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 64 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/roberta_base/wnli

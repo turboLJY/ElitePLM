@@ -1,0 +1,275 @@
+#GPT2
+#training
+#Commensense QA
+python run_coqa.py \
+--model_name_or_path gpt2 \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 5 \
+--output_dir  coqa_gpt_base_output \
+--per_gpu_eval_batch_size=16 \
+--per_device_train_batch_size=16 \
+--gradient_accumulation_steps=2 \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--overwrite_output \
+--train_file  data/coqa/train_rand_split.json \
+--validation_file  data/coqa/dev_rand_split.json \
+--cache_dir  gpt2
+
+python run_coqa.py \
+--model_name_or_path gpt2-medium \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 3 \
+--output_dir  coqa_gpt_medium_output \
+--per_gpu_eval_batch_size=4 \
+--per_device_train_batch_size=4 \
+--gradient_accumulation_steps=4 \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--overwrite_output \
+--train_file  data/coqa/train_rand_split.json \
+--validation_file  data/coqa/dev_rand_split.json \
+--cache_dir  gpt2-medium
+
+#SWAG
+python run_swag.py \
+--model_name_or_path gpt2-medium \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 3 \
+--output_dir  swag_gpt_medium_output \
+--per_gpu_eval_batch_size=4 \
+--per_device_train_batch_size=4 \
+--gradient_accumulation_steps=4 \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--overwrite_output \
+--train_file  data/swag/train.csv \
+--validation_file  data/swag/val.csv \
+--cache_dir  gpt2-medium
+
+
+#HellaSWAG
+python run_hellaswag.py \
+--model_name_or_path gpt2 \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 5 \
+--output_dir  hella_gpt_base_output \
+--per_gpu_eval_batch_size=8 \
+--per_device_train_batch_size=8 \
+--gradient_accumulation_steps=4 \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--overwrite_output \
+--train_file  data/hellaswag/hellaswag_train.json \
+--validation_file  data/hellaswag/hellaswag_val.json \
+--cache_dir  gpt2
+
+python run_hellaswag.py \
+--model_name_or_path gpt2-medium \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 3 \
+--output_dir  hella_gpt_medium_output \
+--per_gpu_eval_batch_size=4 \
+--per_device_train_batch_size=4 \
+--gradient_accumulation_steps=4 \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--overwrite_output \
+--train_file  data/hellaswag/hellaswag_train.json \
+--validation_file  data/hellaswag/hellaswag_val.json \
+--cache_dir  gpt2-medium
+
+#ARCT
+python run_arct.py \
+--model_name_or_path gpt2 \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 10 \
+--output_dir  arct_gpt_base_output \
+--per_gpu_eval_batch_size=16 \
+--per_device_train_batch_size=16 \
+--gradient_accumulation_steps=2 \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--overwrite_output \
+--train_file  data/arct/train.csv \
+--validation_file  data/arct/valid.csv \
+--cache_dir  gpt2
+
+python run_arct.py \
+--model_name_or_path gpt2-medium \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 5 \
+--output_dir  arct_gpt_medium_output \
+--per_gpu_eval_batch_size=4 \
+--per_device_train_batch_size=4 \
+--gradient_accumulation_steps=4 \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--overwrite_output \
+--train_file  data/arct/train.csv \
+--validation_file  data/arct/valid.csv \
+--cache_dir  gpt2-medium
+
+#Sen1
+python run_sen1.py \
+--model_name_or_path gpt2 \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 10 \
+--output_dir  sen1_gpt_base_output \
+--per_gpu_eval_batch_size=16 \
+--per_device_train_batch_size=16 \
+--gradient_accumulation_steps=2 \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--overwrite_output \
+--train_file  data/sen/train.csv \
+--validation_file  data/sen/valid.csv \
+--cache_dir  gpt2
+
+python run_sen1.py \
+--model_name_or_path gpt2-medium \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 5 \
+--output_dir  sen1_gpt_medium_output \
+--per_gpu_eval_batch_size=4 \
+--per_device_train_batch_size=4 \
+--gradient_accumulation_steps=4 \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--overwrite_output \
+--train_file  data/sen/train.csv \
+--validation_file  data/sen/valid.csv \
+--cache_dir  gpt2-medium
+
+#Sen2
+python run_sen2.py \
+--model_name_or_path gpt2 \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 10 \
+--output_dir  sen2_gpt_base_output \
+--per_gpu_eval_batch_size=16 \
+--per_device_train_batch_size=16 \
+--gradient_accumulation_steps=2 \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--overwrite_output \
+--train_file  data/sen/train.csv \
+--validation_file  data/sen/valid.csv \
+--cache_dir  gpt2
+
+python run_sen2.py \
+--model_name_or_path gpt2-medium \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 5 \
+--output_dir  sen2_gpt_medium_output \
+--per_gpu_eval_batch_size=4 \
+--per_device_train_batch_size=4 \
+--gradient_accumulation_steps=4 \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--overwrite_output \
+--train_file  data/sen/train.csv \
+--validation_file  data/sen/valid.csv \
+--cache_dir  gpt2-medium
+
+#predicting
+
+#Commensense QA
+python run_coqa.py \
+--model_name_or_path  coqa_gpt_base_output/checkpoint-912 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/coqa/test_rand_split_no_answers.json
+
+python run_coqa.py \
+--model_name_or_path  coqa_gpt_medium_output/checkpoint-1218 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/coqa/test_rand_split_no_answers.json 
+
+
+#ROCStories
+
+#SWAG
+python run_swag.py \
+--model_name_or_path  swag_gpt_medium_output/checkpoint-13788 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/swag/test.csv \
+
+
+#HellaSWAG
+python run_hellaswag.py \
+--model_name_or_path  hella_gpt_base_output/checkpoint-4988 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/hellaswag/ hellaswag_test.json
+
+python run_hellaswag.py \
+--model_name_or_path  hella_gpt_medium_output/checkpoint-7482 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/hellaswag/ hellaswag_test.json 
+
+
+#ARCT
+python run_arct.py \
+--model_name_or_path  arct_gpt_base_output/checkpoint-380 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/arct/test.csv
+
+python run_arct.py \
+--model_name_or_path  arct_gpt_medium_output/checkpoint-375 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/arct/test.csv
+
+
+#Sen1
+python run_sen1.py \
+--model_name_or_path  sen1_gpt_base_output/checkpoint-2808 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/sen/test.csv
+
+python run_sen1.py \
+--model_name_or_path  sen1_gpt_medium_output/checkpoint-3125 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/sen/test.csv
+
+#Sen2
+python run_sen2.py \
+--model_name_or_path  sen2_gpt_base_output/checkpoint-1248 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/sen/test.csv
+
+python run_sen2.py \
+--model_name_or_path  sen2_gpt_medium_output/checkpoint-1875 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/sen/test.csv

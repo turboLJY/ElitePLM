@@ -1,0 +1,108 @@
+#RoBERTa
+#training
+#SWAG
+python run_swag.py \
+--model_name_or_path roberta-base \
+--do_train \
+--do_eval \
+--evaluation_strategy steps \
+--eval_steps 9194 \
+--save_strategy steps \
+--save_steps 9194 \
+--learning_rate 2e-5 \
+--num_train_epochs 5 \
+--output_dir  swag_roberta_base_output \
+--per_gpu_eval_batch_size=8 \
+--per_device_train_batch_size=8 \
+--overwrite_output \
+--train_file  data/swag/train.csv \
+--validation_file  data/swag/val.csv \
+--cache_dir   roberta_base
+
+#HellaSWAG
+python run_hellaswag.py \
+--model_name_or_path roberta-base \
+--do_train \
+--do_eval \
+--evaluation_strategy steps \
+--eval_steps 4989 \
+--save_strategy steps \
+--save_steps 4989 \
+--learning_rate 2e-5 \
+--num_train_epochs 5 \
+--output_dir  hella_roberta_base_output \
+--per_gpu_eval_batch_size=8 \
+--per_device_train_batch_size=8 \
+--overwrite_output \
+--train_file  data/hellaswag/hellaswag_train.json \
+--validation_file  data/hellaswag/hellaswag_val.json \
+--cache_dir   roberta_base
+
+
+
+#ARCT
+python run_arct.py \
+--model_name_or_path roberta-base \
+--do_train \
+--do_eval \
+--evaluation_strategy steps \
+--eval_steps 152 \
+--save_strategy steps \
+--save_steps 152 \
+--learning_rate 2e-5 \
+--num_train_epochs 10 \
+--output_dir  arct_roberta_base_output \
+--per_gpu_eval_batch_size=8 \
+--per_device_train_batch_size=8 \
+--overwrite_output \
+--train_file  data/arct/train.csv \
+--validation_file  data/arct/valid.csv \
+--cache_dir   roberta_base
+
+python run_arct.py \
+--model_name_or_path roberta-large \
+--do_train \
+--do_eval \
+--evaluation_strategy steps \
+--eval_steps 303 \
+--save_strategy steps \
+--save_steps 303 \
+--learning_rate 1e-6 \
+--num_train_epochs 5 \
+--output_dir  arct_roberta_large_output \
+--per_gpu_eval_batch_size=4 \
+--per_device_train_batch_size=4 \
+--overwrite_output \
+--train_file  data/arct/train.csv \
+--validation_file  data/arct/valid.csv \
+--cache_dir   roberta_large
+
+
+#predicting
+
+#SWAG
+python run_swag.py \
+--model_name_or_path  swag_roberta_base_output/checkpoint-45970 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data//swag/test.csv 
+
+#HellaSWAG
+python run_hellaswag.py \
+--model_name_or_path  hella_roberta_base_output/checkpoint-24945 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/hellaswag/test.csv
+
+#ARCT
+python run_arct.py \
+--model_name_or_path  arct_roberta_base_output \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/arct/test.csv \
+
+python run_arct.py \
+--model_name_or_path  arct_roberta_large_output \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/arct/test.csv

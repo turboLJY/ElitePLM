@@ -1,0 +1,305 @@
+#ALBERT
+#training
+#Commensense QA
+python run_coqa.py \
+--model_name_or_path albert-xlarge-v2 \
+--do_train \
+--do_eval \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--learning_rate 1e-6 \
+--num_train_epochs 5 \
+--output_dir  coqa_albert_xl_output \
+--per_gpu_eval_batch_size=4 \
+--per_device_train_batch_size=4 \
+--overwrite_output \
+--load_best_model_at_end True \
+--train_file  data/coqa/train_rand_split.json \
+--validation_file  data/coqa/dev_rand_split.json \
+--cache_dir   albert_xlarge
+
+python run_coqa.py \
+--model_name_or_path albert-xxlarge-v2 \
+--do_train \
+--do_eval \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--learning_rate 1e-6 \
+--num_train_epochs 2 \
+--output_dir  coqa_albert_xxl_output \
+--per_gpu_eval_batch_size=4 \
+--per_device_train_batch_size=2 \
+--overwrite_output \
+--load_best_model_at_end True \
+--train_file  data/coqa/train_rand_split.json \
+--validation_file  data/coqa/dev_rand_split.json \
+--cache_dir   albert_xlarge
+
+#ROCStories
+python run_roc.py \
+--model_name_or_path albert-xlarge-v2 \
+--do_train \
+--do_eval \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--learning_rate 2e-6 \
+--num_train_epochs 5 \
+--output_dir  roc_albert_xl_output \
+--per_gpu_eval_batch_size=8 \
+--per_device_train_batch_size=8 \
+--gradient_accumulation_steps=4 \
+--overwrite_output \
+--train_file  data/roc-val/train.csv \
+--validation_file  data/roc-val/valid.csv \
+--cache_dir   albert_xlarge
+
+python run_roc.py \
+--model_name_or_path albert-xxlarge-v2 \
+--do_train \
+--do_eval \
+--evaluation_strategy epoch \
+--save_strategy epoch \
+--learning_rate 1e-6 \
+--num_train_epochs 5 \
+--output_dir  roc_albert_xxl_output \
+--per_gpu_eval_batch_size=4 \
+--per_device_train_batch_size=4 \
+--overwrite_output \
+--train_file  data/roc-val/train.csv \
+--validation_file  data/roc-val/valid.csv \
+--cache_dir   albert_xxlarge
+
+#SWAG
+python run_swag.py \
+--model_name_or_path albert-xlarge-v2 \
+--do_train \
+--do_eval \
+--evaluation_strategy steps \
+--eval_steps 6129 \
+--save_strategy steps \
+--save_steps 6129 \
+--learning_rate 1e-6 \
+--num_train_epochs 5 \
+--output_dir  swag_albert_xl_output \
+--per_gpu_eval_batch_size=4 \
+--per_device_train_batch_size=4 \
+--overwrite_output \
+--train_file  data/swag/swag-train.csv \
+--validation_file  data/swag/swag-val.csv \
+--cache_dir   albert_xlarge
+
+python run_swag.py \
+--model_name_or_path albert-xxlarge-v2 \
+--do_train \
+--do_eval \
+--evaluation_strategy steps \
+--eval_steps 18386 \
+--save_strategy steps \
+--save_steps 18386 \
+--learning_rate 1e-6 \
+--num_train_epochs 5 \
+--output_dir  swag_albert_xxl_output \
+--per_gpu_eval_batch_size=2 \ 
+--per_device_train_batch_size=2 \
+--overwrite_output \
+--train_file  data/swag/swag-train.csv \
+--validation_file  data/swag/swag-val.csv \
+--cache_dir   albert_xxlarge
+
+#HellaSWAG
+python run_hellaswag.py \
+--model_name_or_path albert-xlarge-v2 \
+--do_train \
+--do_eval \
+--evaluation_strategy steps \
+--eval_steps 6651 \
+--save_strategy steps \
+--save_steps 6651 \
+--learning_rate 1e-6 \
+--num_train_epochs 5 \
+--output_dir  hella_albert_xl_output \
+--per_gpu_eval_batch_size=2 \
+--per_device_train_batch_size=2 \
+--overwrite_output True \
+--train_file  data/hellaswag/hellaswag_train.json \
+--validation_file  data/hellaswag/hellaswag_val.json \
+--cache_dir   albert_xlarge
+
+python run_hellaswag.py \
+--model_name_or_path albert-xxlarge-v2 \
+--do_train \
+--do_eval \
+--evaluation_strategy steps \
+--eval_steps 3326 \
+--save_strategy steps \
+--save_steps 3326 \
+--learning_rate 1e-6 \
+--num_train_epochs 5 \
+--output_dir  hellaswag_albert_xxl_output \
+--per_gpu_eval_batch_size=2 \
+--per_device_train_batch_size=2 \
+--overwrite_output \
+--train_file  data/hellaswag/hellaswag_train.json \
+--validation_file  data/hellaswag/hellaswag_val.json \
+--cache_dir   albert_xxlarge
+
+#ARCT
+python run_arct.py \
+--model_name_or_path albert-xlarge-v2 \
+--do_train \
+--do_eval \
+--evaluation_strategy steps \
+--eval_steps 303 \
+--save_strategy steps \
+--save_steps 303 \
+--learning_rate 2e-5 \
+--num_train_epochs 5 \
+--output_dir  arct_albert_xl_output \
+--per_gpu_eval_batch_size=4 \
+--per_device_train_batch_size=4 \
+--overwrite_output \
+--train_file  data/arct/train.csv \
+--validation_file  data/arct/valid.csv \
+--cache_dir   albert_xlarge
+
+python run_arct.py \
+--model_name_or_path albert-xlarge-v2 \
+--do_train \
+--do_eval \
+--evaluation_strategy steps \
+--eval_steps 605 \
+--save_strategy steps \
+--save_steps 605 \
+--learning_rate 1e-6 \
+--num_train_epochs 5 \
+--output_dir  arct_albert_xl_output \
+--per_gpu_eval_batch_size=4 \
+--per_device_train_batch_size=2 \
+--overwrite_output \
+--train_file  data/arct/train.csv \
+--validation_file  data/arct/valid.csv \
+--cache_dir   albert_xxlarge
+
+#Sen1
+python run_sen1.py \
+--model_name_or_path albert-xlarge-v2 \
+--do_train \
+--do_eval \
+--evaluation_strategy steps \
+--eval_steps 625 \
+--save_strategy steps \
+--save_steps 625 \
+--learning_rate 1e-6 \
+--num_train_epochs 10 \
+--output_dir  sen1_albert_xl_output \
+--per_gpu_eval_batch_size=16 \
+--per_device_train_batch_size=16 \
+--overwrite_output \
+--train_file  data/sen/train.csv \
+--validation_file  data/sen/valid.csv \
+--cache_dir   albert_xlarge
+
+python run_sen1.py \
+--model_name_or_path albert-xxlarge-v2 \
+--do_train \
+--do_eval \
+--evaluation_strategy steps \
+--eval_steps 1250 \
+--save_strategy steps \
+--save_steps 1250 \
+--learning_rate 1e-6 \
+--num_train_epochs 5 \
+--output_dir  sen1_albert_xxl_output \
+--per_gpu_eval_batch_size=8 \
+--per_device_train_batch_size=8 \
+--overwrite_output \
+--train_file  data/sen/train.csv \
+--validation_file  data/sen/valid.csv \
+--cache_dir   albert_xxlarge
+
+#Sen2
+#predicting
+
+#Commensense QA
+python run_coqa.py \
+--model_name_or_path  coqa_albert_xl_output/checkpoint-7308 \
+--do_predict \
+--per_gpu_eval_batch_size=8 \
+--cache_dir   albert_xlarge \
+--test_file  data/coqa/test_rand_split_no_answers.json \
+
+python run_coqa.py \
+--model_name_or_path  coqa_albert_xxl_output/checkpoint-9742 \
+--do_predict \
+--output_dir  coqa_albert_xxl_output/test \
+--per_gpu_eval_batch_size=16 \
+--train_file  data/coqa/train_rand_split.json \
+--validation_file  data/coqa/dev_rand_split.json \
+--cache_dir   albert_xxlarge \
+--test_file  data/coqa/test_rand_split_no_answers.json 
+
+#ROCStories
+python run_roc.py \
+--model_name_or_path  roc_albert_xl_output/checkpoint-195 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/roc-val/test.csv
+
+python run_roc.py \
+--model_name_or_path  roc_albert_xxl_output/checkpoint-1260 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/roc-val/test.csv \
+
+#SWAG
+python run_swag.py \
+--model_name_or_path  swag_albert_xl_output/checkpoint-49032 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/swag/test.csv \
+
+python run_swag.py \
+--model_name_or_path  swag_albert_xxl_output/checkpoint-54858 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/swag/test.csv \
+
+#HellaSWAG
+python run_hellaswag.py \
+--model_name_or_path  hella_albert_xl_output /checkpoint-59859 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/hellaswag/test.csv
+
+python run_hellaswag.py \
+--model_name_or_path  hellaswag_albert_xxl_output/checkpoint-46564 \
+--do_predict \
+--per_gpu_eval_batch_size=8 \
+--test_file  data/hellaswag/test.csv
+
+#ARCT
+python run_arct.py \
+--model_name_or_path  arct_albert_xl_output \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/arct/test.csv
+
+python run_arct.py \
+--model_name_or_path  arct_albert_xxl_output/checkpoint-3025 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/arct/test.csv
+
+#Sen1
+python run_sen1.py \
+--model_name_or_path  sen1_albert_xl_output/checkpoint-4375 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/sen/test.csv
+
+python run_sen1.py \
+--model_name_or_path  sen1_albert_xxl_output/checkpoint-5000 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  data/sen/test.csv
+

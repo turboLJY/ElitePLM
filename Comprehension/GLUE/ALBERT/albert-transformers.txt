@@ -1,0 +1,97 @@
+CUDA_VISIBLE_DEVICES=5 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/albert_xlarge \
+  --task_name mnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 28 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --save_steps 5000 \
+  --output_dir ../result/albert_xlarge/mnli
+
+CUDA_VISIBLE_DEVICES=5 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/albert_xlarge \
+  --task_name cola \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 28 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 3 \
+  --overwrite_output_dir \
+  --save_steps 5000 \
+  --output_dir ../result/albert_xlarge/cola
+
+CUDA_VISIBLE_DEVICES=5 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/albert_xlarge \
+  --task_name stsb \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 28 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 3 \
+  --overwrite_output_dir \
+  --save_steps 5000 \
+  --output_dir ../result/albert_xlarge/stsb
+
+CUDA_VISIBLE_DEVICES=5 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/albert_xxlarge \
+  --task_name stsb \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 16 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 3 \
+  --overwrite_output_dir \
+  --save_steps 5000 \
+  --output_dir ../result/albert_xxlarge/stsb
+
+CUDA_VISIBLE_DEVICES=5 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/albert_xxlarge \
+  --task_name cola \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 16 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 3 \
+  --overwrite_output_dir \
+  --save_steps 5000 \
+  --output_dir ../result/albert_xxlarge/cola
+
+CUDA_VISIBLE_DEVICES=5 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/albert_xxlarge \
+  --task_name qnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 16 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 3 \
+  --overwrite_output_dir \
+  --save_steps 10000 \
+  --output_dir ../result/albert_xxlarge/qnli
+
+CUDA_VISIBLE_DEVICES=4 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/albert_xxlarge \
+  --task_name mnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 20 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --save_steps 5000 \
+  --output_dir ../result/albert_xxlarge/mnli

@@ -1,0 +1,40 @@
+config.json, line 2, add: "model_type": "bert",
+
+CUDA_VISIBLE_DEVICES=6 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/unilm_large \
+  --task_name mrpc \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/unilm_large/mrpc
+
+CUDA_VISIBLE_DEVICES=6 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/unilm_large \
+  --task_name stsb \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/unilm_large/stsb
+
+CUDA_VISIBLE_DEVICES=3 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/unilm_large \
+  --task_name qqp \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/unilm_large/qqp

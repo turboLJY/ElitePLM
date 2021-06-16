@@ -1,0 +1,115 @@
+#ERNIE
+#training and predicting
+#Commensense QA
+python coqa_ernie.py \
+  --train_file  ./data/coqa/train.csv \
+--validation_file  ./data/coqa/valid.csv \
+--test_file  ./data/coqa/test.csv \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 2 \
+  --per_device_eval_batch_size 4 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --output_dir results/coqa \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+--logging_steps 10
+
+#ROCStories
+python roc_ernie.py \
+  --train_file  ./data/roc-val/train.csv \
+--validation_file  ./data/roc-val/valid.csv \
+--test_file  ./data/roc-val/test.csv \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 2 \
+  --per_device_eval_batch_size 4 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --output_dir results/roc \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+--logging_steps 10
+
+
+#SWAG
+python swag_ernie.py \
+  --train_file  ./data/swag/train.csv \
+  --validation_file  ./data/swag/val.csv \
+    --test_file  ./data/swag/test.csv  \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 12 \
+  --per_device_eval_batch_size 24 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 10 \
+  --output_dir  results/swag \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+  --logging_steps 10
+
+#HellaSWAG
+python hella_ernie.py \
+  --train_file  ./data/hella-csv/train.csv \
+  --validation_file  ./data/hella-csv/valid.csv \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 4 \
+--per_device_eval_batch_size 4 \
+--gradient_accumulation_steps 8 \
+  --learning_rate 2e-5 \
+  --num_train_epochs 1 \
+  --output_dir results/hella \
+  --load_best_model_at_end True \
+--metric_for_best_model combined_score \
+--save_strategy no \
+  --evaluation_strategy epoch \
+--logging_steps 10
+
+#ARCT
+python arct_ernie.py \
+  --train_file  ./data/arct/train.csv \
+  --validation_file  ./data/arct/valid.csv \
+    --test_file  ./data/arct/test.csv  \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 12 \
+  --per_device_eval_batch_size 24 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 10 \
+  --output_dir  results/arct \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+  --logging_steps 10
+
+#Sen1
+python sen1_ernie.py \
+  --train_file ./data/sen/train.csv \
+  --validation_file ./data/sen/valid.csv \
+  --test_file  ./data/sen/test.csv \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 2 \
+  --per_device_eval_batch_size 4 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --output_dir  results/sen \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+  --logging_steps 10
+
+#Sen2
+python sen2_ernie.py \
+  --train_file ./data/sen/train.csv \
+  --validation_file ./data/sen/valid.csv \
+    --test_file  ./data/sen2/test.csv \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 2 \
+  --per_device_eval_batch_size 4 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --output_dir  results/sen2 \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+  --logging_steps 10

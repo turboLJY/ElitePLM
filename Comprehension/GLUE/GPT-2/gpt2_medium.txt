@@ -1,0 +1,131 @@
+run_glue.py, line312, add: tokenizer.pad_token = tokenizer.eos_token
+config.json, line10, add: "pad_token_id": 50256,
+
+finish
+CUDA_VISIBLE_DEVICES=4 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/gpt2_medium \
+  --task_name mrpc \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/gpt2_medium/mrpc
+
+finish
+CUDA_VISIBLE_DEVICES=6 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/gpt2_medium \
+  --task_name wnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/gpt2_medium/wnli
+
+finish
+CUDA_VISIBLE_DEVICES=4 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/gpt2_medium \
+  --task_name mnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --save_steps 10000 \
+  --output_dir ../result/gpt2_medium/mnli
+
+finish
+CUDA_VISIBLE_DEVICES=6 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/gpt2_medium \
+  --task_name cola \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/gpt2_medium/cola
+
+finish
+CUDA_VISIBLE_DEVICES=6 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/gpt2_medium \
+  --task_name sst2 \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/gpt2_medium/sst2
+
+finish
+CUDA_VISIBLE_DEVICES=4 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/gpt2_medium \
+  --task_name rte \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/gpt2_medium/rte
+
+finish
+CUDA_VISIBLE_DEVICES=4 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/gpt2_medium \
+  --task_name stsb \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/gpt2_medium/stsb
+
+finish
+CUDA_VISIBLE_DEVICES=6 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/gpt2_medium \
+  --task_name qqp \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --save_steps 10000 \
+  --output_dir ../result/gpt2_medium/qqp
+
+
+CUDA_VISIBLE_DEVICES=6 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/gpt2_medium \
+  --task_name qnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --save_steps 10000 \
+  --output_dir ../result/gpt2_medium/qnli

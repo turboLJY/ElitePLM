@@ -1,0 +1,126 @@
+CUDA_VISIBLE_DEVICES=3 python ./examples/pytorch/text-classification/run_glue_prophetnet.py \
+  --model_name_or_path ../pretrained_model/prophetnet \
+  --task_name mrpc \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 64 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --save_steps 10000 \
+  --output_dir ../result/prophetnet/mrpc
+
+CUDA_VISIBLE_DEVICES=5 python ./examples/pytorch/text-classification/run_glue_prophetnet.py \
+  --model_name_or_path ../pretrained_model/prophetnet \
+  --task_name wnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 128 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --save_steps 10000 \
+  --output_dir ../result/prophetnet/wnli
+
+CUDA_VISIBLE_DEVICES=6 python ./examples/pytorch/text-classification/run_glue_prophetnet.py \
+  --model_name_or_path ../pretrained_model/prophetnet \
+  --task_name cola \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 64 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --save_steps 10000 \
+  --output_dir ../result/prophetnet/cola
+
+CUDA_VISIBLE_DEVICES=5 python ./examples/pytorch/text-classification/run_glue_prophetnet.py \
+  --model_name_or_path ../pretrained_model/prophetnet \
+  --task_name rte \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 128 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --save_steps 10000 \
+  --output_dir ../result/prophetnet/rte
+
+CUDA_VISIBLE_DEVICES=5 python ./examples/pytorch/text-classification/run_glue_no_trainer_p.py \
+  --model_name_or_path ../pretrained_model/prophetnet \
+  --task_name qqp \
+  --do_train \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 128 \
+  --per_device_eval_batch_size 128 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --save_steps 10000 \
+  --output_dir ../result/prophetnet/qqp_result \
+  --resume_from_checkpoint ../result/prophetnet/qqp
+
+CUDA_VISIBLE_DEVICES=7 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/prophetnet \
+  --task_name sst2 \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 64 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --save_steps 10000 \
+  --output_dir ../result/prophetnet/sst2
+
+CUDA_VISIBLE_DEVICES=5 python ./examples/pytorch/text-classification/run_glue_prophetnet.py \
+  --model_name_or_path ../pretrained_model/prophetnet \
+  --task_name qnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 128 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --save_steps 10000 \
+  --output_dir ../result/prophetnet/qnli
+
+CUDA_VISIBLE_DEVICES=6 python ./examples/pytorch/text-classification/run_glue_prophetnet.py \
+  --model_name_or_path ../pretrained_model/prophetnet \
+  --task_name mnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 64 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --save_steps 10000 \
+  --output_dir ../result/prophetnet/mnli
+
+CUDA_VISIBLE_DEVICES=6 python ./examples/pytorch/text-classification/run_glue_prophetnet.py \
+  --model_name_or_path ../pretrained_model/prophetnet \
+  --task_name stsb \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 64 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --save_steps 10000 \
+  --output_dir ../result/prophetnet/stsb

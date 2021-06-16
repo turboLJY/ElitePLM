@@ -1,0 +1,312 @@
+#T5
+#training
+
+#ROCStories
+python run_roc.py \
+--model_name_or_path t5-base \
+--do_train \
+--do_eval \
+--learning_rate 2e-4 \
+--num_train_epochs 10 \
+--output_dir  roc_base_output \
+--per_gpu_eval_batch_size=8 \
+--per_device_train_batch_size=8 \
+--gradient_accumulation_steps 2 \
+--overwrite_output \
+--train_file  roc-val/train.csv \
+--validation_file  roc-val/valid.csv \
+--cache_dir t5-base \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10
+
+python run_roc.py \
+--model_name_or_path t5-large \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 5 \
+--output_dir  roc_large_gas4_output \
+--per_gpu_eval_batch_size=1 \
+--per_device_train_batch_size=1 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  roc-val/train.csv \
+--validation_file  roc-val/valid.csv \
+--cache_dir t5-large \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10
+
+
+#SWAG	
+python run_swag.py \
+--model_name_or_path t5-base \
+--do_train \
+--do_eval \
+--learning_rate 2e-4 \
+--num_train_epochs 5 \
+--output_dir  swag_base_output \
+--per_gpu_eval_batch_size=16 \
+--per_device_train_batch_size=16 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  swag/train.csv \
+--validation_file  swag/val.csv \
+--cache_dir t5-base \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10
+
+python run_swag.py \
+--model_name_or_path t5-large \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 2 \
+--output_dir  swag_large_gas4_output \
+--per_device_eval_batch_size=1 \
+--per_device_train_batch_size=1 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  swag/train.csv \
+--validation_file  swag/val.csv \
+--cache_dir t5-large \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10
+
+#HellaSWAG
+python run_hella.py \
+--model_name_or_path t5-base \
+--do_train \
+--do_eval \
+--learning_rate 2e-4 \
+--num_train_epochs 5 \
+--output_dir  hella_base_output \
+--per_gpu_eval_batch_size=16 \
+--per_device_train_batch_size=16 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  hellaswag/hellaswag_train.json \
+--validation_file  hellaswag/hellaswag_val.json \
+--cache_dir t5-base \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10
+
+python run_hella.py \
+--model_name_or_path t5-large \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 5 \
+--output_dir  hella_large_output \
+--per_device_eval_batch_size=1 \
+--per_device_train_batch_size=1 \
+--overwrite_output \
+--train_file  hellaswag/hellaswag_train.json \
+--validation_file  hellaswag/hellaswag_val.json \
+--cache_dir t5-large \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10
+
+#ARCT
+python run_arct.py \
+--model_name_or_path t5-base \
+--do_train \
+--do_eval \
+--learning_rate 2e-4 \
+--num_train_epochs 10 \
+--output_dir  arct_base_output \
+--per_gpu_eval_batch_size=16 \
+--per_device_train_batch_size=16 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  arct/train.csv \
+--validation_file  arct/valid.csv \
+--cache_dir t5-base \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10
+
+python run_arct.py \
+--model_name_or_path t5-large \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 5 \
+--output_dir  arct_large_gas4_output \
+--per_gpu_eval_batch_size=1 \
+--per_device_train_batch_size=1 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  arct/train.csv \
+--validation_file  arct/valid.csv \
+--cache_dir t5-large \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10
+
+#Sen1
+python run_sen1.py \
+--model_name_or_path t5-base \
+--do_train \
+--do_eval \
+--learning_rate 2e-4 \
+--num_train_epochs 5 \
+--output_dir  sen1_base_output \
+--per_gpu_eval_batch_size=16 \
+--per_device_train_batch_size=16 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  sen/train.csv \
+--validation_file  sen/valid.csv \
+--cache_dir t5-base \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10
+
+python run_sen1.py \
+--model_name_or_path t5-large \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 3 \
+--output_dir  sen1_large_output \
+--per_gpu_eval_batch_size=1 \
+--per_device_train_batch_size=1 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  sen/train.csv \
+--validation_file  sen/valid.csv \
+--cache_dir t5-large \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10
+
+#Sen2
+python run_sen2.py \
+--model_name_or_path t5-base \
+--do_train \
+--do_eval \
+--learning_rate 2e-4 \
+--num_train_epochs 5 \
+--output_dir  sen2_base_output \
+--per_gpu_eval_batch_size=16 \
+--per_device_train_batch_size=16 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  sen/train.csv \
+--validation_file  sen/valid.csv \
+--cache_dir t5-base \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10
+
+python run_sen2.py \
+--model_name_or_path t5-large \
+--do_train \
+--do_eval \
+--learning_rate 2e-5 \
+--num_train_epochs 3 \
+--output_dir  sen2_large_output \
+--per_gpu_eval_batch_size=1 \
+--per_device_train_batch_size=1 \
+--gradient_accumulation_steps 4 \
+--overwrite_output \
+--train_file  sen/train.csv \
+--validation_file  sen/valid.csv \
+--cache_dir t5-large \
+--save_strategy epoch \
+--evaluation_strategy epoch \
+--eval_accumulation_steps 10
+
+#predicting
+
+#ROCStories
+python run_roc.py \
+--model_name_or_path  roc_base_output/checkpoint-553 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--eval_accumulation_steps 10 \
+--test_file  roc-val/test.csv
+
+python run_roc.py \
+--model_name_or_path  roc_large_gas4_output/checkpoint-942 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--eval_accumulation_steps 10 \
+--test_file  roc-val/test.csv
+
+#SWAG
+python run_swag.py \
+--model_name_or_path  swag_base_output/checkpoint-4596 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--eval_accumulation_steps 10 \
+--test_file  swag/test.csv
+
+python run_swag.py \
+--model_name_or_path  swag_large_gas4_output/checkpoint-36772 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--eval_accumulation_steps 10 \
+--test_file  swag/test.csv
+
+#HellaSWAG
+python run_hella.py \
+--model_name_or_path  hella_base_output/checkpoint-3115 \
+--do_predict \
+--per_gpu_eval_batch_size=96 \
+--eval_accumulation_steps 10 \
+--test_file  hellaswag/hellaswag_test.json
+
+python run_hella.py \
+--model_name_or_path  hella_large_output/checkpoint-199525 \
+--do_predict \
+--per_gpu_eval_batch_size=96 \
+--eval_accumulation_steps 10 \
+--test_file  hellaswag/hellaswag_test.json
+
+
+#ARCT
+python run_arct.py \
+--model_name_or_path  arct_base_output/checkpoint-133 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  arct/test.csv
+
+python run_arct.py \
+--model_name_or_path  arct_large_gas4_output/checkpoint-1208 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  arct/test.csv
+
+#Sen1
+python run_sen1.py \
+--model_name_or_path  sen1_base_output/checkpoint-624 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  sen/test.csv
+
+python run_sen1.py \
+--model_name_or_path  sen1_large_output/checkpoint-7500 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  sen/test.csv
+
+
+#Sen2
+python run_sen2.py \
+--model_name_or_path  sen2_base_output/checkpoint-780 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  sen/test.csv
+
+python run_sen2.py \
+--model_name_or_path  sen2_large_output/checkpoint-7500 \
+--do_predict \
+--per_gpu_eval_batch_size=32 \
+--test_file  sen/test.csv

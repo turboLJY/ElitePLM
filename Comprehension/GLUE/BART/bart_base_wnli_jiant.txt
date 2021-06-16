@@ -1,0 +1,18 @@
+CUDA_VISIBLE_DEVICES=1,2,3 python jiant/proj/simple/runscript.py \
+    run \
+    --run_name bart_base_wnli \
+    --exp_dir ../gluedataset/ \
+    --data_dir ../gluedataset/tasks \
+    --hf_pretrained_model_name_or_path ../pretrained_model/bart_base \
+    --tasks wnli \
+    --train_batch_size 64 \
+    --num_train_epochs 5 \
+    --seed=2021 \
+    --do_save \
+    --write_test_preds
+    
+python ./jiant/scripts/benchmarks/benchmark_submission_formatter.py \
+    --benchmark GLUE \
+    --tasks wnli\
+    --input_base_path ../test_preds/bart_base/ \
+    --output_path ../result/bart_base/

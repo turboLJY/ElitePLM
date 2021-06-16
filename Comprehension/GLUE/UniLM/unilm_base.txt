@@ -1,0 +1,118 @@
+config.json, line 2, add: "model_type": "bert",
+
+CUDA_VISIBLE_DEVICES=6 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/unilm_base \
+  --task_name mrpc \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/unilm_base/mrpc
+
+CUDA_VISIBLE_DEVICES=7 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/unilm_base \
+  --task_name wnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/unilm_base/wnli
+
+CUDA_VISIBLE_DEVICES=6 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/unilm_base \
+  --task_name mnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 128 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/unilm_base/mnli
+
+CUDA_VISIBLE_DEVICES=7 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/unilm_base \
+  --task_name cola \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/unilm_base/cola
+
+CUDA_VISIBLE_DEVICES=7 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/unilm_base \
+  --task_name sst2 \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 128 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/unilm_base/sst2
+
+CUDA_VISIBLE_DEVICES=7 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/unilm_base \
+  --task_name rte \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/unilm_base/rte
+
+CUDA_VISIBLE_DEVICES=7 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/unilm_base \
+  --task_name stsb \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/unilm_base/stsb
+
+CUDA_VISIBLE_DEVICES=7 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/unilm_base \
+  --task_name qqp \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 128 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/unilm_base/qqp
+
+CUDA_VISIBLE_DEVICES=3 python ./examples/pytorch/text-classification/run_glue.py \
+  --model_name_or_path ../pretrained_model/unilm_base \
+  --task_name qnli \
+  --do_train \
+  --do_eval \
+  --do_predict \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 64 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --overwrite_output_dir \
+  --output_dir ../result/unilm_base/qnli

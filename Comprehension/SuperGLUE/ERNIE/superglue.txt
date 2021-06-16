@@ -1,0 +1,104 @@
+CUDA_VISIBLE_DEVICES=0 python run_superglue.py \
+  --task_name boolq \
+  --max_seq_length 256 \
+  --per_device_train_batch_size 16 \
+  --per_device_eval_batch_size 64 \
+  --learning_rate 1e-5 \
+  --adam_beta1 0.9 \
+  --adam_beta2 0.98 \
+  --num_train_epochs 10 \
+  --output_dir ../results/ernie-thu/boolq/ \
+  --warmup_ratio 0.06 \
+  --seed 2021 \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+  --logging_steps 20
+
+
+CUDA_VISIBLE_DEVICES=0 python run_superglue.py \
+  --task_name cb \
+  --max_seq_length 256 \
+  --per_device_train_batch_size 4 \
+  --per_device_eval_batch_size 64 \
+  --learning_rate 1e-5 \
+  --adam_beta1 0.9 \
+  --adam_beta2 0.98 \
+  --num_train_epochs 15 \
+  --output_dir ../results/ernie-thu/boolq/ \
+  --warmup_ratio 0.06 \
+  --seed 2021 \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+  --logging_steps 20
+
+
+CUDA_VISIBLE_DEVICES=0 python run_superglue.py \
+  --task_name wic \
+  --max_seq_length 256 \
+  --per_device_train_batch_size 8 \
+  --per_device_eval_batch_size 64 \
+  --learning_rate 1e-5 \
+  --adam_beta1 0.9 \
+  --adam_beta2 0.98 \
+  --num_train_epochs 10 \
+  --output_dir ../results/ernie-thu/wic \
+  --warmup_ratio 0.06 \
+  --seed 2021 \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+  --logging_steps 20
+
+
+CUDA_VISIBLE_DEVICES=0 python run_superglue.py \
+  --task_name wsc \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 32 \
+  --per_device_eval_batch_size 64 \
+  --learning_rate 1e-5 \
+  --adam_beta1 0.9 \
+  --adam_beta2 0.98 \
+  --num_train_epochs 15 \
+  --output_dir ../results/ernie-thu/wic \
+  --warmup_ratio 0.06 \
+  --seed 2021 \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+  --logging_steps 20
+
+
+CUDA_VISIBLE_DEVICES=0 python run_copa.py \
+  --task_name copa \
+  --max_seq_length 128 \
+  --per_device_train_batch_size 12 \
+  --per_device_eval_batch_size 64 \
+  --learning_rate 1e-5 \
+  --adam_beta1 0.9 \
+  --adam_beta2 0.98 \
+  --num_train_epochs 15 \
+  --output_dir ../results/ernie-thu/wic \
+  --warmup_ratio 0.06 \
+  --seed 2021 \
+  --load_best_model_at_end True \
+  --metric_for_best_model combined_score \
+  --evaluation_strategy epoch \
+  --logging_steps 20
+
+
+CUDA_VISIBLE_DEVICES=0 python run_multirc.py \
+  --task_name multirc \
+  --max_seq_length 448 \
+  --per_device_train_batch_size 8 \
+  --per_device_eval_batch_size 32 \
+  --learning_rate 1e-5 \
+  --num_train_epochs 5 \
+  --output_dir ../results/ernie-thu/wic \
+  --warmup_ratio 0.06 \
+  --seed 2021 \
+  --load_best_model_at_end True \
+  --metric_for_best_model exact_match \
+  --eval_times 10 \
+  --logging_steps 20

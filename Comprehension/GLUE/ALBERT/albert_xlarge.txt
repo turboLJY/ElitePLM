@@ -1,0 +1,122 @@
+python jiant/proj/simple/runscript.py \
+    run \
+    --run_name albert_xlarge_wnli \
+    --exp_dir ../gluedataset/ \
+    --data_dir ../gluedataset/tasks \
+    --hf_pretrained_model_name_or_path ../pretrained_model/albert_xlarge \
+    --tasks wnli \
+    --train_batch_size 32 \
+    --num_train_epochs 5 \
+    --seed=2021 \
+    --do_save \
+    --write_test_preds
+    
+python jiant/proj/simple/runscript.py \
+    run \
+    --run_name albert_xlarge_cola \
+    --exp_dir ../gluedataset/ \
+    --data_dir ../gluedataset/tasks \
+    --hf_pretrained_model_name_or_path ../pretrained_model/albert_xlarge \
+    --tasks cola \
+    --train_batch_size 32 \
+    --num_train_epochs 5 \
+    --seed=2021 \
+    --do_save \
+    --write_test_preds
+    
+python jiant/proj/simple/runscript.py \
+    run \
+    --run_name albert_xlarge_rte \
+    --exp_dir ../gluedataset/ \
+    --data_dir ../gluedataset/tasks \
+    --hf_pretrained_model_name_or_path ../pretrained_model/albert_xlarge \
+    --tasks rte \
+    --train_batch_size 16 \
+    --num_train_epochs 5 \
+    --seed=2021 \
+    --do_save \
+    --write_test_preds
+    
+python jiant/proj/simple/runscript.py \
+    run \
+    --run_name albert_xlarge_stsb \
+    --exp_dir ../gluedataset/ \
+    --data_dir ../gluedataset/tasks \
+    --hf_pretrained_model_name_or_path ../pretrained_model/albert_xlarge \
+    --tasks stsb \
+    --train_batch_size 32 \
+    --num_train_epochs 5 \
+    --seed=2021 \
+    --do_save \
+    --write_test_preds
+    
+python jiant/proj/simple/runscript.py \
+    run \
+    --run_name albert_xlarge_mrpc \
+    --exp_dir ../gluedataset/ \
+    --data_dir ../gluedataset/tasks \
+    --hf_pretrained_model_name_or_path ../pretrained_model/albert_xlarge \
+    --tasks mrpc \
+    --train_batch_size 32 \
+    --num_train_epochs 5 \
+    --seed=2021 \
+    --do_save \
+    --write_test_preds
+    
+python jiant/proj/simple/runscript.py \
+    run \
+    --run_name albert_xlarge_sst \
+    --exp_dir ../gluedataset/ \
+    --data_dir ../gluedataset/tasks \
+    --hf_pretrained_model_name_or_path ../pretrained_model/albert_xlarge \
+    --tasks sst \
+    --train_batch_size 32 \
+    --num_train_epochs 5 \
+    --seed=2021 \
+    --do_save \
+    --write_test_preds
+    
+python jiant/proj/simple/runscript.py \
+    run \
+    --run_name albert_xlarge_mnli \
+    --exp_dir ../gluedataset/ \
+    --data_dir ../gluedataset/tasks \
+    --hf_pretrained_model_name_or_path ../pretrained_model/albert_xlarge \
+    --tasks mnli \
+    --train_batch_size 16 \
+    --num_train_epochs 5 \
+    --seed=2021 \
+    --do_save \
+    --write_test_preds
+    
+python jiant/proj/simple/runscript.py \
+    run \
+    --run_name albert_xlarge_qnli \
+    --exp_dir ../gluedataset/ \
+    --data_dir ../gluedataset/tasks \
+    --hf_pretrained_model_name_or_path ../pretrained_model/albert_xlarge \
+    --tasks qnli \
+    --train_batch_size 16 \
+    --num_train_epochs 5 \
+    --seed=2021 \
+    --do_save \
+    --write_test_preds
+    
+python jiant/proj/simple/runscript.py \
+    run \
+    --run_name albert_xlarge_qqp \
+    --exp_dir ../gluedataset/ \
+    --data_dir ../gluedataset/tasks \
+    --hf_pretrained_model_name_or_path ../pretrained_model/albert_xlarge \
+    --tasks qqp \
+    --train_batch_size 16 \
+    --num_train_epochs 5 \
+    --seed=2021 \
+    --do_save \
+    --write_test_preds
+    
+python ./jiant/scripts/benchmarks/benchmark_submission_formatter.py \
+    --benchmark GLUE \
+    --input_base_path ../test_preds/albert_xlarge/ \
+    --tasks wnli mnli qqp qnli rte sst stsb cola mrpc\
+    --output_path ../result/albert_xlarge/
