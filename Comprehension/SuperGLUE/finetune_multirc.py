@@ -29,6 +29,8 @@ from transformers.trainer_utils import is_main_process
 
 from sklearn.metrics import f1_score
 
+from Prophetnet.ProphetNetModel import ProphetNetForSequenceClassification
+
 
 logger = logging.getLogger(__name__)
 
@@ -184,12 +186,21 @@ def main():
             cache_dir=args.cache_dir,
             use_fast=True,
         )
-        model = AutoModelForSequenceClassification.from_pretrained(
-            args.model_name_or_path,
-            config=config,
-            cache_dir=args.cache_dir,
-            mirror='https://mirrors.tuna.tsinghua.edu.cn/hugging-face-models'
-        )
+        if "prophetnet" in args.model_name_or_path:
+            config.use_cache = False
+            config.gradient_checkpointing = True
+            model = ProphetNetForSequenceClassification.from_pretrained(
+                args.model_name_or_path,
+                config=config,
+                cache_dir=args.cache_dir,
+            )
+        else:
+            model = AutoModelForSequenceClassification.from_pretrained(
+                args.model_name_or_path,
+                config=config,
+                cache_dir=args.cache_dir,
+                mirror='https://mirrors.tuna.tsinghua.edu.cn/hugging-face-models'
+            )
     else:
         raise ValueError("You should specify a model name or path for loading your model.")
 

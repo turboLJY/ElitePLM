@@ -4,6 +4,7 @@ import torch
 from sklearn.metrics import accuracy_score
 from utils import load_data
 from connector.auto_connector import auto_connector
+from connector.ernie_connector import Ernie
 
 
 device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -64,9 +65,12 @@ def main():
         version = config.split("/")[-1]
         config = f"./config/{version}.json"
 
-    model_connector = auto_connector(
-        model_name_or_path=args.model_name_or_path, cache_dir=args.cache_dir, config=config
-    )
+    if "ernie" in args.model_name_or_path:
+        model_connector = Ernie()
+    else:
+        model_connector = auto_connector(
+            model_name_or_path=args.model_name_or_path, cache_dir=args.cache_dir, config=config
+        )
     dataset = load_data(args.subset_name, model_connector)
 
     if args.evaluate_only:

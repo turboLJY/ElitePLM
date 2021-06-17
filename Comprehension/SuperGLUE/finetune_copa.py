@@ -10,7 +10,7 @@ from datasets import load_dataset
 import transformers
 from transformers import (
     AutoConfig,
-    AutoModelForSequenceClassification,
+    AutoModelForMultipleChoice,
     AutoTokenizer,
     EvalPrediction,
     HfArgumentParser,
@@ -18,19 +18,13 @@ from transformers import (
     TrainingArguments,
     default_data_collator,
     set_seed,
-    EarlyStoppingCallback,
 )
 from transformers.trainer_utils import is_main_process
-from Prophetnet.ProphetNetModel import ProphetNetForSequenceClassification
+
 from metric.my_metrics import MyMetrics
-
-
-task_to_sentence_keys = {
-    "cb": ("premise", "hypothesis"),
-    "wic": ("sentence1", "sentence2"),
-    "wsc": ("text", None),
-    "boolq": ("passage", "question"),
-}
+from GPT2.GPT2Model import GPT2ModelForMultipleChoice
+from BART.BARTModel import BartForMultipleChoice
+from Prophetnet.ProphetNetModel import ProphetNetForMultipleChoice
 
 
 logger = logging.getLogger(__name__)
@@ -144,16 +138,13 @@ def main():
     set_seed(training_args.seed)
 
     # load super glue dataset
-    if data_args.task_name in task_to_sentence_keys.keys():
-        logger.info(f"Loading dataset {data_args.task_name}")
-        datasets = load_dataset("super_glue.py", data_args.task_name)
-        datasets.pop("test")  # pop test set and we will evaluate model on dev dataset
-    else:
-        raise KeyError(f"You should specify a task from {task_to_sentence_keys.keys()} for finetuning your model.")
+    assert data_args.task_name == "copa"
+    logger.info(f"Loading dataset {data_args.task_name}")
+    datasets = load_dataset("super_glue.py", data_args.task_name)
+    datasets.pop("test")  # pop test set and we will evaluate model on dev dataset
 
     label_list = datasets["train"].features["label"].names
     num_labels = len(label_list)
-    label_to_id = {v: i for i, v in enumerate(label_list)}
 
     # load model for finetuning
     if model_args.model_name_or_path:
@@ -173,16 +164,28 @@ def main():
             cache_dir=model_args.cache_dir,
             use_fast=model_args.use_fast_tokenizer,
         )
-        if "prophetnet" in model_args.model_name_or_path:
+        if "gpt2" in model_args.model_name_or_path:
+            model = GPT2ModelForMultipleChoice.from_pretrained(
+                model_args.model_name_or_path,
+                config=config,
+                cache_dir=model_args.cache_dir,
+            )
+        elif "bart" in model_args.model_name_or_path:
+            model = BartForMultipleChoice.from_pretrained(
+                model_args.model_name_or_path,
+                config=config,
+                cache_dir=model_args.cache_dir,
+            )
+        elif "prophetnet" in model_args.model_name_or_path:
             config.use_cache = False
             config.gradient_checkpointing = True
-            model = ProphetNetForSequenceClassification.from_pretrained(
+            model = ProphetNetForMultipleChoice.from_pretrained(
                 model_args.model_name_or_path,
                 config=config,
                 cache_dir=model_args.cache_dir,
             )
         else:
-            model = AutoModelForSequenceClassification.from_pretrained(
+            model = AutoModelForMultipleChoice.from_pretrained(
                 model_args.model_name_or_path,
                 config=config,
                 cache_dir=model_args.cache_dir,
@@ -193,7 +196,7 @@ def main():
     # add new pad token for some models like gpt2 which do not have pad token
     if "pad_token" not in tokenizer.special_tokens_map.keys():
         tokenizer.add_special_tokens({"pad_token": "[PAD]"})
-        model.resize_tokenizer_embeddings(len(tokenizer))
+        model.resize_token_embeddings(len(tokenizer))
         model.config.pad_token_id = tokenizer.pad_token_id
 
     # convert datasets to examples which can be fed into plms
@@ -205,31 +208,18 @@ def main():
     padding = "max_length" if data_args.pad_to_max_length else False
     max_seq_length = min(data_args.max_seq_length, tokenizer.model_max_length)
 
-    sentence1_key, sentence2_key = task_to_sentence_keys[data_args.task_name]
-
     def preprocess_function(examples):
-        args = (
-            (examples[sentence1_key],) if sentence2_key is None else (examples[sentence1_key], examples[sentence2_key])
-        )
-        if data_args.task_name == "wic":
-            sentence1 = []
-            for word, sen1 in zip(examples["word"], examples[sentence1_key]):
-                sentence1.append(word + ": " + sen1)
-            args = (sentence1, examples[sentence2_key])
-        if data_args.task_name == "wsc":
-            sentence1 = []
-            for text, span2_index in zip(examples["text"], examples["span2_index"]):
-                words = text.split()
-                words[span2_index] = "*" + words[span2_index] + "*"
-                sentence1.append(' '.join(words))
-            args = (sentence1, examples["span1_text"])
-        result = tokenizer(*args, padding=padding, max_length=max_seq_length, truncation=True)
-
-        # Map labels to IDs
-        # if label_to_id is not None and "label" in examples:
-        #     result["label"] = [(label_to_id[l] if l != -1 else -1) for l in examples["label"]]
-        result["label"] = examples["label"]
-        return result
+        flat_sentences = []
+        for (premise, question, choice1, choice2) in \
+                zip(examples["premise"], examples["question"], examples["choice1"], examples["choice2"]):
+            joiner = "because" if question == "cause" else "so"
+            flat_sentences.append(premise + " " + joiner + " " + choice1)
+            flat_sentences.append(premise + " " + joiner + " " + choice2)
+        tokenized_examples = tokenizer(flat_sentences, padding=padding, max_length=max_seq_length, truncation=True)
+        # un-flatten
+        results = {k: [v[i: i + 2] for i in range(0, len(v), 2)] for k, v in tokenized_examples.items()}
+        results["label"] = examples["label"]
+        return results
 
     datasets = datasets.map(preprocess_function, batched=True)
 
@@ -258,7 +248,6 @@ def main():
         compute_metrics=compute_metrics,
         tokenizer=tokenizer,
         data_collator=default_data_collator,
-        # callbacks=[EarlyStoppingCallback(early_stopping_patience=3, early_stopping_threshold=1e-4)],
     )
 
     trainer.train()
