@@ -1,5 +1,5 @@
-# GLAE
-General Language Ability Evaluation for PLMs
-This is the anonymous page for EMNLP submission paper *GLAE: An Empirical Study of Pretrained Language Models for General Language Ability Evaluation*.
+# ElitePLM
+
+This is the anonymous page for EMNLP submission paper *ElitePLM: An Empirical Study on General Language Ability Evaluation of Pretrained Language Models*.
 
 We evaluate PLMs in four dimensions, including memory, comprehension, reasoning and composition. We provide detailed experiment setups in the corresponding page.
